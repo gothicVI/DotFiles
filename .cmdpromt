@@ -1,0 +1,13 @@
+PROMPT_COMMAND=promptcmd
+PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $CPU \[\033[40;37m\] \u@\h \w \[\033[0m\]'
+
+function promptcmd()
+{
+freemem=`free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }'`
+read cpu a b c previdle rest < /proc/stat
+prevtotal=$((a+b+c+previdle))
+sleep 0.1
+read cpu a b c idle rest < /proc/stat
+total=$((a+b+c+idle))
+CPU=CPU=$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%
+}
