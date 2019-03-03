@@ -1,9 +1,9 @@
 if [ IS_LAPTOP = "False" ]; then
-  PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $CPU \[\033[40;37m\] \u@\h \w \[\033[0m\]'
   PROMPT_COMMAND=promptcmd
+  PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $CPU \[\033[40;37m\] \u@\h \w \[\033[0m\]'
 elif [ IS_LAPTOP = "True" ]; then
-  PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $battperc $CPU \[\033[40;37m\] \u@\h \w \[\033[0m\]'
   PROMPT_COMMAND=promptcmdlaptop
+  PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $battperc $CPU \[\033[40;37m\] \u@\h \w \[\033[0m\]'
 fi
 
 function promptcmd()
