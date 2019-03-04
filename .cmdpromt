@@ -13,7 +13,7 @@ fi
 
 function promptcmd()
 {
-freemem=`free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }'`
+freemem=$(free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')
 read cpu a b c previdle rest < /proc/stat
 prevtotal=$((a+b+c+previdle))
 sleep 0.1
@@ -24,7 +24,7 @@ CPU=CPU=$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%
 
 function promptcmdlaptop()
 {
-freemem=`free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }'`
+freemem=$(free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')
 read cpu a b c previdle rest < /proc/stat
 prevtotal=$((a+b+c+previdle))
 sleep 0.1
