@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$HOME" || exit
+thisscript=${PWD}/INSTALL.sh
+cd "${HOME}" || exit
 echo " === Downloading DotFiles from https://github.com/gothicVI/DotFiles === "
 echo " === This is done interactively === "
 echo " === Make sure to have a backup! === "
@@ -35,5 +36,5 @@ while true; do
 done
 echo ""
 echo " === We're done! Deleting this installation script now: === "
-rm -v -- "$0"
+rm -v "${thisscript}"
 exit
