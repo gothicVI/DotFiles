@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $HOME
+cd "$HOME" || exit
 echo " === Downloading DotFiles from https://github.com/gothicVI/DotFiles === "
 echo " === This is done interactively === "
 echo " === Make sure to have a backup! === "
