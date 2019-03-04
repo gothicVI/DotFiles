@@ -10,5 +10,5 @@ elif [ ! -f "${HOME}/.sourcedprofile" ] && [ -f "${HOME}/.sourcedbashrc" ]; then
 elif [ -f "${HOME}/.sourcedprofile" ] && [ ! -f "${HOME}/.sourcedbashrc" ]; then
   source ~/.profile
 elif [ -f "${HOME}/.sourcedprofile" ] && [ -f "${HOME}/.sourcedbashrc" ]; then
-  rm ~/.sourcedprofile ~/.sourcedbashrc
+  /bin/rm ~/.sourcedprofile ~/.sourcedbashrc
 fi
