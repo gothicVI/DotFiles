@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # Script to ensure that ~/.profile and ~/.bashrc have been source.
-#It is called at the end of ~/.bashrc
+#It is called at the end of ~/.bashrc which is sourced by ~/.profile
 
-if [ ! -f "${HOME}/.sourcedbashrc" ]; then
+if [ ! -f "${HOME}/.sourcedprofile" ] && [ ! -f "${HOME}/.sourcedbashrc" ]; then
   source ~/.profile
-elif [ -f "${HOME}/.sourcedbashrc" ]; then
-  /bin/rm ~/.sourcedbashrc
+elif [ ! -f "${HOME}/.sourcedprofile" ] && [ -f "${HOME}/.sourcedbashrc" ]; then
+  source ~/.profile
+elif [ -f "${HOME}/.sourcedprofile" ] && [ ! -f "${HOME}/.sourcedbashrc" ]; then
+  source ~/.profile
+elif [ -f "${HOME}/.sourcedprofile" ] && [ -f "${HOME}/.sourcedbashrc" ]; then
+  /bin/rm ~/.sourcedprofile ~/.sourcedbashrc
 fi
