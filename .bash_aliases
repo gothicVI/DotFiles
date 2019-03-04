@@ -20,6 +20,7 @@ if [ -f ~/laos_build.sh ]; then
   alias thea14.1='~/laos_build.sh thea 14.1'
   alias thea15.1='~/laos_build.sh thea 15.1'
   alias thea16.0='~/laos_build.sh thea 16.0'
+  alias androidclean='rm -rfv ~/android/laos_1{4.1,5.1,6.0}/out/* ~/android/laos_1{4.1,5.1,6.0}/out/.*'
 fi
 
 if [ -f ~/.IsLaptop ]; then
