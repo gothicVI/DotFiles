@@ -9,7 +9,9 @@ alias rmdir='/bin/rmdir -v'
 alias HTOP='htop -u $(whoami)'
 alias TOP='top -u $(whoami)'
 
-alias TLMGR='~/TLMGR.sh'
+if [ -f ~/TLMGR.sh ]; then
+  alias TLMGR='~/TLMGR.sh'
+fi
 
 if [ -f ~/laos_build.sh ]; then
   alias potter14.1='~/laos_build.sh potter 14.1'
