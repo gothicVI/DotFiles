@@ -127,3 +127,6 @@ fi
 
 # finish
 touch "${HOME}/.sourcedbashrc"
+if [ -f "${HOME}/.checkifsourced" ]; then
+  source "${HOME}/.checkifsourced"
+fi
