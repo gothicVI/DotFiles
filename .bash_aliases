@@ -10,10 +10,12 @@ alias TOP='top -u $(whoami)'
 alias TLMGR='~/TLMGR.sh'
 
 if [ -f ~/laos_build.sh ]; then
-  alias thea14.1='~/thea_14.1.sh'
-  alias thea15.1='~/thea_15.1.sh'
-  alias potter14.1='~/potter_14.1.sh'
-  alias potter15.1='~/potter_15.1.sh'
+  alias potter14.1='~/laos_build.sh potter 14.1'
+  alias potter15.1='~/laos_build.sh potter 15.1'
+  alias potter16.0='~/laos_build.sh potter 16.0'
+  alias thea14.1='~/laos_build.sh thea 14.1'
+  alias thea15.1='~/laos_build.sh thea 15.1'
+  alias thea16.0='~/laos_build.sh thea 16.0'
 fi
 
 if [ -f ~/.IsLaptop ]; then
