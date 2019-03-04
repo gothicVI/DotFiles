@@ -25,7 +25,8 @@ while true; do
 done
 echo ""
 while true; do
-        read -p "Do you compile Android and want to use ccache and limit the RAM consumption for jack? \n Type 5 for a 5GM limit or 20 for a 20GB limit or N/n and hit ENTER: " android
+        echo "Do you compile Android and want to use ccache and limit the RAM consumption for jack?"
+        read -p " Type 5 for a 5GM limit or 20 for a 20GB limit or N/n and hit ENTER: " android
         case $android in
                 [5]* ) echo ""; wget https://raw.githubusercontent.com/gothicVI/DotFiles/master/.android5G; break;;
                 [20]* ) echo ""; wget https://raw.githubusercontent.com/gothicVI/DotFiles/master/.android20G; break;;
