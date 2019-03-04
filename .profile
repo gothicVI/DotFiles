@@ -12,6 +12,7 @@
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
+    touch "${HOME}/.sourcedprofile"
     if [ -f "$HOME/.bashrc" ]; then
         . "$HOME/.bashrc"
     fi
@@ -21,10 +22,3 @@ fi
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
-
-# source additional files
-for file in .android20G .android5G .cmdpromt; do
-  if [ -f "${HOME}/${file}" ]; then
-    source "${HOME}/${file}"
-  fi
-done
