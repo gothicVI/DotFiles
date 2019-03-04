@@ -1,3 +1,4 @@
+#!/bin/bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -56,15 +57,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-    else
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
-    fi
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
-fi
+#if [ "$color_prompt" = yes ]; then
+#    if [[ ${EUID} == 0 ]] ; then
+#        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+#    else
+#        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+#    fi
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
+#fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -106,7 +107,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    . "${HOME}/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -123,9 +124,19 @@ fi
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
+if [ -x /usr/bin/fortune ] ; then
+     /usr/bin/fortune
+fi
+
+# source additional files
+for file in .android20G .android5G .cmdpromt .localstuff; do
+  if [ -f "${HOME}/${file}" ]; then
+    source "${HOME}/${file}"
+  fi
+done
 
 # finish
-touch ${HOME}/.sourcedbashrc
+touch "${HOME}/.sourcedbashrc"
 if [ -f "${HOME}/.checkifsourced" ]; then
-  source ${HOME}/.checkifsourced
+  source "${HOME}/.checkifsourced"
 fi

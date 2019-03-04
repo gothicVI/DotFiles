@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias cp='/bin/cp -v'
 alias mv='/bin/mv -v'
 alias rm='/bin/rm -v'
@@ -7,15 +9,29 @@ alias rmdir='/bin/rmdir -v'
 alias HTOP='htop -u $(whoami)'
 alias TOP='top -u $(whoami)'
 
-alias TLMGR='~/TLMGR.sh'
+if [ -f ~/TLMGR.sh ]; then
+  alias TLMGR='~/TLMGR.sh'
+fi
 
-if [ -f ~/laos_build.sh ]; then
-  alias potter14.1='~/laos_build.sh potter 14.1'
-  alias potter15.1='~/laos_build.sh potter 15.1'
-  alias potter16.0='~/laos_build.sh potter 16.0'
-  alias thea14.1='~/laos_build.sh thea 14.1'
-  alias thea15.1='~/laos_build.sh thea 15.1'
-  alias thea16.0='~/laos_build.sh thea 16.0'
+if [ -f ~/laos_build.sh ] && [ -d ~/android ]; then
+  for rev in 14.1 15.1 16.0; do
+    for dev in potter thea; do
+      if [ -f ~/android/laos_${rev}/.repo/local_manifests/${dev}.xml ]; then
+        alias "${dev}${rev}"="~/laos_build.sh ${dev} ${rev}"
+      fi
+    done
+    if [ -d ~/android/laos_${rev} ]; then
+      alias "androidclean${rev}"="rm -rfv ~/android/laos_${rev}/out/* ~/android/laos_${rev}/out/.*"
+    fi
+  done
+fi
+
+if [ -f ~/mvv.sh ]; then
+  alias mvv='~/mvv.sh'
+fi
+
+if [ -f ~/mensa.sh ]; then
+  alias mensa='~/mensa.sh'
 fi
 
 if [ -f ~/.IsLaptop ]; then

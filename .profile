@@ -1,3 +1,4 @@
+#!/bin/bash
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -8,28 +9,21 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+test -z "$PROFILEREAD" && . /etc/profile || true
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
+    touch "${HOME}/.sourcedprofile"
+    if [ -f "${HOME}/.bashrc" ]; then
+        . "${HOME}/.bashrc"
     fi
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "${HOME}/bin" ]; then
+    PATH="${HOME}/bin:$PATH"
 fi
-
-# source additional files
-for file in .android20G .android5G .cmdpromt; do
-  if [ -f "${HOME}/${file}" ]; then
-    source "${HOME}/${file}"
-  fi
-done
-
-# finish
-touch ${HOME}/.sourcedprofile
-if [-f "${HOME}/.checkifsourced" ]; then
-  source ${HOME}/.checkifsourced
+if [ -d "${HOME}/.local/bin" ]; then
+    PATH="${HOME}/.local/bin:$PATH"
 fi
