@@ -29,3 +29,4 @@ for file in .android20G .android5G .cmdpromt; do
 done
 
 touch ~/.sourcedprofile
+source .checkifsourced
