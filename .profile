@@ -28,6 +28,3 @@ for file in .android20G .android5G .cmdpromt; do
     source "${HOME}/${file}"
   fi
 done
-
-# finish
-touch "${HOME}/.sourcedprofile"
