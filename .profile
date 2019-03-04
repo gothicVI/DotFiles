@@ -23,10 +23,13 @@ fi
 
 # source additional files
 for file in .android20G .android5G .cmdpromt; do
-  if [ -f ~/${file} ]; then
-    source ~/${file}
+  if [ -f "${HOME}/${file}" ]; then
+    source "${HOME}/${file}"
   fi
 done
 
-touch ~/.sourcedprofile
-source .checkifsourced
+# finish
+touch ${HOME}/.sourcedprofile
+if [-f "${HOME}/.checkifsourced" ]; then
+  source ${HOME}/.checkifsourced
+fi

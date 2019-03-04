@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Script the modifies the bash promt to display free RAM, BATTERY-PERCENTAGE (if ~./IsLaptop exists), and CPU utilization.
+# It is called by ~/.profile
+
 if [ -f ~/.IsLaptop ]; then
   PROMPT_COMMAND=promptcmdlaptop
   PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $battperc $CPU \[\033[40;37m\] \u@\h \w \[\033[0m\]'

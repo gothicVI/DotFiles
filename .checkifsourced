@@ -8,7 +8,7 @@ if [ ! -f ~/.sourcedprofile && ! -f ~/.sourcedbashrc ]; then
 elif [ ! -f ~/.sourcedprofile && -f ~/.sourcedbashrc ]; then
   source ~/.profile
 elif [ -f ~/.sourcedprofile && ! -f ~/.sourcedbashrc ]; then
-  source ~/.bashrc
+  source ~/.profile
 elif [ -f ~/.sourcedprofile && -f ~/.sourcedbashrc ]; then
   rm ~/.sourcedprofile ~/.sourcedbashrc
 fi
