@@ -31,6 +31,3 @@ done
 
 # finish
 touch "${HOME}/.sourcedprofile"
-if [ -f "${HOME}/.checkifsourced" ]; then
-  source "${HOME}/.checkifsourced"
-fi
