@@ -3,12 +3,12 @@
 # Script to ensure that ~/.profile and ~/.bashrc have been source.
 #It is called at the end of ~/.profile and at the end of ~/.bashrc
 
-if [ ! -f ~/.sourcedprofile && ! -f ~/.sourcedbashrc ]; then
+if [ ! -f "~/.sourcedprofile" ] && [ ! -f "~/.sourcedbashrc" ]; then
   source ~/.profile
-elif [ ! -f ~/.sourcedprofile && -f ~/.sourcedbashrc ]; then
+elif [ ! -f "~/.sourcedprofile" ] && [ -f "~/.sourcedbashrc" ]; then
   source ~/.profile
-elif [ -f ~/.sourcedprofile && ! -f ~/.sourcedbashrc ]; then
+elif [ -f "~/.sourcedprofile" ] && [ ! -f "~/.sourcedbashrc" ]; then
   source ~/.profile
-elif [ -f ~/.sourcedprofile && -f ~/.sourcedbashrc ]; then
+elif [ -f "~/.sourcedprofile" ] && [ -f "~/.sourcedbashrc" ]; then
   rm ~/.sourcedprofile ~/.sourcedbashrc
 fi
