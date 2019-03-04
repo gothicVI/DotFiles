@@ -1,3 +1,4 @@
+#!/bin/bash
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -29,7 +30,7 @@ for file in .android20G .android5G .cmdpromt; do
 done
 
 # finish
-touch ${HOME}/.sourcedprofile
-if [-f "${HOME}/.checkifsourced" ]; then
-  source ${HOME}/.checkifsourced
+touch "${HOME}/.sourcedprofile"
+if [ -f "${HOME}/.checkifsourced" ]; then
+  source "${HOME}/.checkifsourced"
 fi
