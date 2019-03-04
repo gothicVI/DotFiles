@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias cp='/bin/cp -v'
 alias mv='/bin/mv -v'
 alias rm='/bin/rm -v'
