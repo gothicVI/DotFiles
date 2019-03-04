@@ -125,6 +125,13 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
+# source additional files
+for file in .android20G .android5G .cmdpromt; do
+  if [ -f "${HOME}/${file}" ]; then
+    source "${HOME}/${file}"
+  fi
+done
+
 # finish
 touch "${HOME}/.sourcedbashrc"
 if [ -f "${HOME}/.checkifsourced" ]; then
