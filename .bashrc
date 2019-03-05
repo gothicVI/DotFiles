@@ -57,15 +57,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-    else
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
-    fi
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
-fi
+#if [ "$color_prompt" = yes ]; then
+#    if [[ ${EUID} == 0 ]] ; then
+#        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+#    else
+#        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+#    fi
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
+#fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -123,6 +123,9 @@ fi
 
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
+fi
+if [ -x /usr/bin/fortune ] ; then
+     /usr/bin/fortune
 fi
 
 # source additional files
