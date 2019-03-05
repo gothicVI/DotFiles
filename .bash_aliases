@@ -23,6 +23,14 @@ if [ -f ~/laos_build.sh ]; then
   alias androidclean='rm -rfv ~/android/laos_1{4.1,5.1,6.0}/out/* ~/android/laos_1{4.1,5.1,6.0}/out/.*'
 fi
 
+if [ -f ~/mvv.sh ]; then
+  alias mvv='~mvv.sh'
+fi
+
+if [ -f ~/mensa.sh ]; then
+  alias mensa='~mensa.sh'
+fi
+
 if [ -f ~/.IsLaptop ]; then
   alias BATTERY='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage:'
 fi
