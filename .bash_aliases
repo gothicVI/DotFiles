@@ -24,11 +24,11 @@ if [ -f ~/laos_build.sh ]; then
 fi
 
 if [ -f ~/mvv.sh ]; then
-  alias mvv='~mvv.sh'
+  alias mvv='~/mvv.sh'
 fi
 
 if [ -f ~/mensa.sh ]; then
-  alias mensa='~mensa.sh'
+  alias mensa='~/mensa.sh'
 fi
 
 if [ -f ~/.IsLaptop ]; then
