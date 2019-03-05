@@ -2,9 +2,11 @@
 
 thisscript=${PWD}/INSTALL.sh
 cd "${HOME}" || exit
+echo " ====================================================================== "
 echo " === Downloading DotFiles from https://github.com/gothicVI/DotFiles === "
-echo " === This is done interactively === "
-echo " === Make sure to have a backup! === "
+echo " ===                   This is done interactively                   === "
+echo " ===                  Make sure to have a backup!                   === "
+echo " ====================================================================== "
 echo ""
 echo "Downloading .bash_aliases, .bash_logout, .bashrc, .checkifsourced, .cmdpromt, .profile"
 echo "Hit ENTER to continue or Ctrl+C to abort"
