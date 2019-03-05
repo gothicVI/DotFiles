@@ -13,14 +13,15 @@ if [ -f ~/TLMGR.sh ]; then
   alias TLMGR='~/TLMGR.sh'
 fi
 
-if [ -f ~/laos_build.sh ]; then
-  alias potter14.1='~/laos_build.sh potter 14.1'
-  alias potter15.1='~/laos_build.sh potter 15.1'
-  alias potter16.0='~/laos_build.sh potter 16.0'
-  alias thea14.1='~/laos_build.sh thea 14.1'
-  alias thea15.1='~/laos_build.sh thea 15.1'
-  alias thea16.0='~/laos_build.sh thea 16.0'
-  alias androidclean='rm -rfv ~/android/laos_1{4.1,5.1,6.0}/out/* ~/android/laos_1{4.1,5.1,6.0}/out/.*'
+if [ -f ~/laos_build.sh ] && [ -d ~/android ]; then
+  for rev in 14.1 15.1 16.0; do
+    for dev in potter thea; do
+      if [ -f ~/android/laos_${rev}/.repo/local_manifests/${dev}.xml ]; then
+        alias '${dev}${rev}'='~/laos_build.sh ${dev} ${rev}'
+      fi
+    done
+    alias 'androidclean${rev}'='rm -rfv ~/android/laos_${rev}/out/* ~/android/laos_${rev}/out/.*'
+  done
 fi
 
 if [ -f ~/.IsLaptop ]; then
