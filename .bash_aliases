@@ -24,6 +24,14 @@ if [ -f ~/laos_build.sh ] && [ -d ~/android ]; then
   done
 fi
 
+if [ -f ~/mvv.sh ]; then
+  alias mvv='~mvv.sh'
+fi
+
+if [ -f ~/mensa.sh ]; then
+  alias mensa='~mensa.sh'
+fi
+
 if [ -f ~/.IsLaptop ]; then
   alias BATTERY='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage:'
 fi

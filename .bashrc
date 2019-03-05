@@ -126,7 +126,7 @@ if [ -x /usr/bin/mint-fortune ]; then
 fi
 
 # source additional files
-for file in .android20G .android5G .cmdpromt; do
+for file in .android20G .android5G .cmdpromt .localstuff; do
   if [ -f "${HOME}/${file}" ]; then
     source "${HOME}/${file}"
   fi
