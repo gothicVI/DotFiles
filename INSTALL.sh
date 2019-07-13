@@ -8,16 +8,16 @@ echo " ===                   This is done interactively                   === "
 echo " ===                  Make sure to have a backup!                   === "
 echo " ====================================================================== "
 echo ""
-echo "Downloading .bash_aliases, .bash_logout, .bashrc, .checkifsourced, .cmdpromt, .profile"
+echo "Downloading .bash_aliases, .bash_logout, .bashrc, .checkifsourced, .cmdpromt, .profile, .vimrc"
 echo "Hit ENTER to continue or Ctrl+C to abort"
 echo ""
 read -s
-for file in .bash_aliases .bash_logout .bashrc .checkifsourced .cmdpromt .profile; do
+for file in .bash_aliases .bash_logout .bashrc .checkifsourced .cmdpromt .profile .vimrc; do
   if [ -f "${file}" ]; then
     rm ${file}
   fi
 done
-wget https://raw.githubusercontent.com/gothicVI/DotFiles/master/.bash_aliases https://raw.githubusercontent.com/gothicVI/DotFiles/master/.bash_logout https://raw.githubusercontent.com/gothicVI/DotFiles/master/.bashrc https://raw.githubusercontent.com/gothicVI/DotFiles/master/.checkifsourced https://raw.githubusercontent.com/gothicVI/DotFiles/master/.cmdpromt https://raw.githubusercontent.com/gothicVI/DotFiles/master/.profile
+wget https://raw.githubusercontent.com/gothicVI/DotFiles/master/.bash_aliases https://raw.githubusercontent.com/gothicVI/DotFiles/master/.bash_logout https://raw.githubusercontent.com/gothicVI/DotFiles/master/.bashrc https://raw.githubusercontent.com/gothicVI/DotFiles/master/.checkifsourced https://raw.githubusercontent.com/gothicVI/DotFiles/master/.cmdpromt https://raw.githubusercontent.com/gothicVI/DotFiles/master/.profile https://raw.githubusercontent.com/gothicVI/DotFiles/master/.vimrc
 echo ""
 while true; do
         read -p "Is this a laptop? Type Y/y or N/n and hit ENTER: " laptop
