@@ -14,6 +14,9 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
 
+" Set maximum tabs available via 'vim -p '
+set tabpagemax=30
+
 " Sets number of lines of history VIM has to remember
 set history=500
 
