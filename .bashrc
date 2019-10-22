@@ -129,7 +129,7 @@ if [ -x /usr/bin/fortune ] ; then
 fi
 
 # source additional files
-for file in .android20G .android5G .cmdpromt .localstuff; do
+for file in .Android .cmdpromt .localstuff; do
   if [ -f "${HOME}/${file}" ]; then
     source "${HOME}/${file}"
   fi
