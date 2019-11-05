@@ -13,23 +13,23 @@ if [ -f /usr/lib/git-core/git-sh-prompt ]; then
   GIT_PS1_SHOWCOLORHINTS=1
 
   if [ -f ~/.IsLaptop ]; then
-    PROMPT_COMMAND=promptcmdlaptop
-    PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $battperc $CPU \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
+    PROMPT_COMMAND=initlaptop
+    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${battperc} ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
   else
-    PROMPT_COMMAND=promptcmd
-    PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $CPU \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
+    PROMPT_COMMAND=init
+    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
   fi
 else
   if [ -f ~/.IsLaptop ]; then
-    PROMPT_COMMAND=promptcmdlaptop
-    PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $battperc $CPU \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
+    PROMPT_COMMAND=initlaptop
+    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${battperc} ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
   else
-    PROMPT_COMMAND=promptcmd
-    PS1='\[\033[47;30m\] MB free=$freemem \[\033[41;37m\] $CPU \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
+    PROMPT_COMMAND=init
+    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
   fi
 fi
 
-function promptcmd()
+function promptRAMCPU()
 {
 freemem=$(free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')
 read cpu a b c previdle rest < /proc/stat
@@ -40,14 +40,32 @@ total=$((a+b+c+idle))
 CPU=CPU=$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%
 }
 
-function promptcmdlaptop()
+function promptRAMCPUlaptop()
 {
-freemem=$(free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')
-read cpu a b c previdle rest < /proc/stat
-prevtotal=$((a+b+c+previdle))
-sleep 0.1
-read cpu a b c idle rest < /proc/stat
-total=$((a+b+c+idle))
-CPU=CPU=$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%
+promptRAMCPU
 battperc=Battery=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')
+}
+
+function promtTEMP()
+{
+TEMP=""
+if [ "${HOSTNAME}" == "mykonos" ]; then
+  TEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
+elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ]; then
+  TEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
+elif [ "${HOSTNAME}" == "MAX" ]; then
+  TEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
+fi
+}
+
+function init()
+{
+promptRAMCPU
+promtTEMP
+}
+
+function initlaptop()
+{
+promptRAMCPUlaptop
+promtTEMP
 }
