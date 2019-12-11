@@ -36,6 +36,9 @@ set hlsearch
 " search as characters are entered
 set incsearch
 
+" Enable spell checking
+set spell spelllang=en_us,de_de
+
 """"""""""""""
 " Usabillity "
 """"""""""""""
