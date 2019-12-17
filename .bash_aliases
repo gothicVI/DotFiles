@@ -13,11 +13,11 @@ if [ -f ~/TLMGR.sh ]; then
   alias TLMGR='~/TLMGR.sh'
 fi
 
-if [ -f ~/laos_build.sh ] && [ -d ~/android ]; then
+if [ -f ~/git/AndroidDevelopment/laos_build.sh ] && [ -d ~/android ]; then
   for rev in 14.1 15.1 16.0 17.0; do
     for dev in potter thea; do
       if [ -f ~/android/laos_${rev}/.repo/local_manifests/${dev}_${rev}.xml ]; then
-        alias "${dev}${rev}"="~/laos_build.sh ${dev} ${rev}"
+        alias "${dev}${rev}"="~/git/AndroidDevelopment/laos_build.sh ${dev} ${rev}"
       fi
     done
     if [ -d ~/android/laos_${rev} ]; then
