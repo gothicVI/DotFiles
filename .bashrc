@@ -168,6 +168,8 @@ elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || [ "${HOST
   TEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
 elif [ "${HOSTNAME}" == "kleineinstein" ]; then
   TEMP=", $(sensors | grep "Core 2" | awk '{print $3}')"
+elif [ "${HOSTNAME}" == "EINSTEIN" ]; then
+  TEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
 fi
 }
 
