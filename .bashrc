@@ -89,19 +89,19 @@ if ${use_color} ; then
 else
 	if [[ ${EUID} == 0 ]] ; then
 		# show root@ when we don't have colors
-		PS1='\u@\h \W $(__git_ps1 " (%s)") \$ '
+        PS1='\u@\h \W \$ '
 	else
-		PS1='\u@\h \w $(__git_ps1 " (%s)") \$ '
+        PS1='\u@\h \w \$ '
 	fi
 fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
+alias cp='/usr/bin/cp -i'                          # confirm before overwriting something
+alias df='/usr/bin/df -h'                          # human-readable sizes
+alias free='/usr/bin/free -m'                      # show sizes in MB
+alias np='/usr/bin/nano -w PKGBUILD'
+alias more='/usr/bin/less'
 
 xhost +local:root > /dev/null 2>&1
 
