@@ -77,9 +77,11 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]$(__git_ps1 " (%s)")]\$\[\033[00m\] '
+        PROMPT_COMMAND=initlaptop
+        PS1='\[\033[01;31m\][RAM free: ${freemem} | Battery: ${battperc} | CPU: ${CPU}${TEMP} | \h\[\033[01;36m\] \W\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	else
-		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]$(__git_ps1 " (%s)")]\$\[\033[00m\] '
+        PROMPT_COMMAND=initlaptop
+        PS1='\[\033[01;32m\][RAM free: ${freemem} | Battery: ${battperc} | CPU: ${CPU}${TEMP} | \u@\h\[\033[01;37m\] \W\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -143,4 +145,45 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+function promptcmd()
+{
+freemem="$(free | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')"
+read cpu a b c previdle rest < /proc/stat
+prevtotal=$((a+b+c+previdle))
+sleep 0.1
+read cpu a b c idle rest < /proc/stat
+total=$((a+b+c+idle))
+CPU="$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%"
+}
+
+function promttemp()
+{
+TEMP=""
+if [ "${HOSTNAME}" == "mykonos" ]; then
+  TEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
+elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] ||
+     [ "${HOSTNAME}" == "smaug" ]; then
+  TEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
+elif [ "${HOSTNAME}" == "kleineinstein" ]; then
+  TEMP=", $(sensors | grep "Core 2" | awk '{print $3}')"
+fi
+}
+
+function promptbattery()
+{
+battperc="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
+}
+
+function init()
+{
+promptcmd
+promttemp
+}
+
+function initlaptop()
+{
+init
+promptbattery
 }
