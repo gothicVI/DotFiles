@@ -14,36 +14,36 @@ if [ -f /usr/lib/git-core/git-sh-prompt ]; then
 
   if [ -f ~/.IsLaptop ]; then
     PROMPT_COMMAND=initlaptop
-    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${battperc} ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
+    PS1='\[\033[47;30m\] RAM free: ${freemem} \[\033[41;37m\] CPU: ${CPU}${TEMP} \[\033[40;37m\] Battery: ${battperc} \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
   else
     PROMPT_COMMAND=init
-    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
+    PS1='\[\033[47;30m\] RAM free: ${freemem} \[\033[41;37m\] CPU: ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w $(__git_ps1 " (%s)") \n \$ \[\033[0m\]'
   fi
 else
   if [ -f ~/.IsLaptop ]; then
     PROMPT_COMMAND=initlaptop
-    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${battperc} ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
+    PS1='\[\033[47;30m\] RAM free: ${freemem} \[\033[41;37m\] CPU: ${CPU}${TEMP} \[\033[40;37m\] Battery: ${battperc} \u@\h \w \n \$ \[\033[0m\]'
   else
     PROMPT_COMMAND=init
-    PS1='\[\033[47;30m\] MB free=${freemem} \[\033[41;37m\] ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
+    PS1='\[\033[47;30m\] RAM free: ${freemem} \[\033[41;37m\] CPU: ${CPU}${TEMP} \[\033[40;37m\] \u@\h \w \n \$ \[\033[0m\]'
   fi
 fi
 
 function promptRAMCPU()
 {
-freemem=$(free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')
+freemem="$(free -m | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')"
 read cpu a b c previdle rest < /proc/stat
 prevtotal=$((a+b+c+previdle))
 sleep 0.1
 read cpu a b c idle rest < /proc/stat
 total=$((a+b+c+idle))
-CPU=CPU=$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%
+CPU="$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%"
 }
 
 function promptRAMCPUlaptop()
 {
 promptRAMCPU
-battperc=Battery=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')
+battperc="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
 }
 
 function promtTEMP()
