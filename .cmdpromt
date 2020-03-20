@@ -53,7 +53,7 @@ if [ "${HOSTNAME}" == "mykonos" ]; then
   TEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
 elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ]; then
   TEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
-elif [ "${HOSTNAME}" == "MAX" ]; then
+elif [ "${HOSTNAME}" == "max" ]; then
   TEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
 fi
 }
