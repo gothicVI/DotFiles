@@ -14,7 +14,7 @@ if [ -f ~/TLMGR.sh ]; then
 fi
 
 if [ -f ~/git/AndroidDevelopment/laos_build.sh ] && [ -d ~/android ]; then
-  for rev in 14.1 15.1 16.0 17.0 17.1; do
+  for rev in 14.1 15.1 16.0 17.1; do
     for dev in potter sargo thea; do
       if [ -f ~/android/laos_${rev}/.repo/local_manifests/${dev}_${rev}.xml ]; then
         alias "${dev}${rev}"="~/git/AndroidDevelopment/laos_build.sh ${dev} ${rev} $(($(nproc --all) - 2))"
