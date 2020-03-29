@@ -164,10 +164,13 @@ function promptCPU()
   if [ "${HOSTNAME}" == "mykonos" ]; then
     CPUTEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
   elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || \
-       [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell0    4" ]; then
+       [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
+       [ "${HOSTNAME}" == "smaug" ]; then
     CPUTEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
-  elif [ "${HOSTNAME}" == "max" ]; then
+  elif [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "EINSTEIN" ]; then
     CPUTEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
+  elif [ "${HOSTNAME}" == "kleineinstein" ]; then
+    CPUTEMP=", $(sensors | grep "Core 2" | awk '{print $3}')"
   fi
   CPU="${CPUUTIL}${CPUTEMP}"
 }
