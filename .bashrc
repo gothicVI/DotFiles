@@ -183,7 +183,7 @@ function promptBAT()
 function promptGPU()
 {
   GPU="---"
-  if [ "${HOSTNAME}" == "max" ]; then
+  if [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "EINSTEIN" ]; then
     GPUUTI="$(nvidia-smi --query-gpu="utilization.gpu" --format="csv,noheader" | awk '{print $1 "%"}')"
     GPUTMP="$(nvidia-smi --query-gpu="temperature.gpu" --format="csv,noheader")°C"
     GPU="${GPUUTI}, ${GPUTMP}"
