@@ -78,10 +78,10 @@ if ${use_color} ; then
 
 	if [[ ${EUID} == 0 ]] ; then
         PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;31m\][RAM free: ${freemem} | Battery: ${battperc} | CPU: ${CPU}${TEMP} | \h\[\033[01;36m\] \W\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\[\033[01;36m\] \W\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	else
         PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;32m\][RAM free: ${freemem} | Battery: ${battperc} | CPU: ${CPU}${TEMP} | \u@\h\[\033[01;37m\] \W\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h\[\033[01;37m\] \W\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -147,45 +147,57 @@ ex ()
   fi
 }
 
-function promptcmd()
+function promptRAM()
 {
-freemem="$(free | awk 'NR==2' | awk '{ printf "%s/%s",$4,$2 }')"
-read cpu a b c previdle rest < /proc/stat
-prevtotal=$((a+b+c+previdle))
-sleep 0.1
-read cpu a b c idle rest < /proc/stat
-total=$((a+b+c+idle))
-CPU="$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%"
+  RAM="$(free -h | awk 'NR==2 {print $4 "/" $2}')"
 }
 
-function promttemp()
+function promptCPU()
 {
-TEMP=""
-if [ "${HOSTNAME}" == "mykonos" ]; then
-  TEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
-elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] ||
-     [ "${HOSTNAME}" == "smaug" ]; then
-  TEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
-elif [ "${HOSTNAME}" == "kleineinstein" ]; then
-  TEMP=", $(sensors | grep "Core 2" | awk '{print $3}')"
-elif [ "${HOSTNAME}" == "EINSTEIN" ]; then
-  TEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
-fi
+  read cpu a b c previdle rest < /proc/stat
+  prevtotal=$((a+b+c+previdle))
+  sleep 0.1
+  read cpu a b c idle rest < /proc/stat
+  total=$((a+b+c+idle))
+  CPUUTIL="$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%"
+  CPUTEMP=""
+  if [ "${HOSTNAME}" == "mykonos" ]; then
+    CPUTEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
+  elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || \
+       [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell0    4" ]; then
+    CPUTEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
+  elif [ "${HOSTNAME}" == "max" ]; then
+    CPUTEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
+  fi
+  CPU="${CPUUTIL}${CPUTEMP}"
 }
 
-function promptbattery()
+function promptBAT()
 {
-battperc="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
+  BAT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
+}
+
+function promptGPU()
+{
+  GPU="---"
+  if [ "${HOSTNAME}" == "max" ]; then
+    GPUUTI="$(nvidia-smi --query-gpu="utilization.gpu" --format="csv,noheader" | awk '{print $1 "%"}')"
+    GPUTMP="$(nvidia-smi --query-gpu="temperature.gpu" --format="csv,noheader")°C"
+    GPU="${GPUUTI}, ${GPUTMP}"
+  fi
 }
 
 function init()
 {
-promptcmd
-promttemp
+promptRAM
+promptCPU
+promptGPU
 }
 
 function initlaptop()
 {
-init
-promptbattery
+promptRAM
+promptCPU
+promptBAT
+promptGPU
 }
