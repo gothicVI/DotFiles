@@ -192,15 +192,15 @@ function promptGPU()
 
 function init()
 {
-promptRAM
-promptCPU
-promptGPU
+  promptRAM
+  promptCPU
+  promptGPU
 }
 
 function initlaptop()
 {
-promptRAM
-promptCPU
-promptBAT
-promptGPU
+  promptRAM
+  promptCPU
+  promptBAT
+  promptGPU
 }
