@@ -204,3 +204,13 @@ function initlaptop()
   promptBAT
   promptGPU
 }
+
+# No duplicates in .bash_history
+export HISTCONTROL=ignoredups:erasedups
+
+# This should realize an infinite history
+export HISTFILESIZE=
+export HISTSIZE=
+
+# Append a session's history on shell exit
+shopt -s histappend
