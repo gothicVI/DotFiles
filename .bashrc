@@ -167,7 +167,7 @@ function promptCPU()
        [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
        [ "${HOSTNAME}" == "smaug" ]; then
     CPUTEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
-  elif [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "EINSTEIN" ]; then
+  elif [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "einstein" ]; then
     CPUTEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
   elif [ "${HOSTNAME}" == "kleineinstein" ]; then
     CPUTEMP=", $(sensors | grep "Core 2" | awk '{print $3}')"
