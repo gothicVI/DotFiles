@@ -9,8 +9,8 @@ alias rmdir='/bin/rmdir -v'
 alias HTOP='htop -u $(whoami)'
 alias TOP='top -u $(whoami)'
 
-if [ -f ~/TLMGR.sh ]; then
-  alias TLMGR='~/TLMGR.sh'
+if [ -f ~/git/Scripts/TLMGR.sh ]; then
+  alias TLMGR='~/git/Scripts/TLMGR.sh'
 fi
 
 if [ -f ~/git/AndroidDevelopment/laos_build.sh ] && [ -d ~/android ]; then
@@ -26,11 +26,11 @@ if [ -f ~/git/AndroidDevelopment/laos_build.sh ] && [ -d ~/android ]; then
   done
 fi
 
-if [ -f ~/mvv.sh ]; then
+if [ -f ~/git/Scripts/mvv.sh ]; then
   alias mvv='~/mvv.sh'
 fi
 
-if [ -f ~/mensa.sh ]; then
+if [ -f ~/git/Scripts/mensa.sh ]; then
   alias mensa='~/mensa.sh'
 fi
 
