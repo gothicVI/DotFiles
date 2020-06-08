@@ -214,3 +214,7 @@ export HISTSIZE=
 
 # Append a session's history on shell exit
 shopt -s histappend
+
+if [ -f "${HOME}/.profile" ] ; then
+    source "${HOME}/.profile"
+fi
