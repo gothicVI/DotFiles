@@ -78,10 +78,10 @@ if ${use_color} ; then
 
 	if [[ ${EUID} == 0 ]] ; then
         PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\[\033[01;36m\] \W\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\[\033[01;36m\] \w\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	else
         PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h\[\033[01;37m\] \W\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h\[\033[01;37m\] \w\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -91,7 +91,7 @@ if ${use_color} ; then
 else
 	if [[ ${EUID} == 0 ]] ; then
 		# show root@ when we don't have colors
-        PS1='\u@\h \W \$ '
+        PS1='\u@\h \w \$ '
 	else
         PS1='\u@\h \w \$ '
 	fi
