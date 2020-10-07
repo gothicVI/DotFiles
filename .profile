@@ -27,3 +27,6 @@ fi
 if [ -d "${HOME}/.local/bin" ]; then
     PATH="${HOME}/.local/bin:$PATH"
 fi
+if [ -d "${HOME}/git/diff-so-fancy" ]; then
+    PATH="${HOME}/git/diff-so-fancy:$PATH"
+fi
