@@ -7,6 +7,9 @@ export EDITOR=/usr/bin/vim
 if [ -d "${HOME}/bin" ] ; then
     PATH="${HOME}/bin:${PATH}"
 fi
+if [ -d "${HOME}/git/diff-so-fancy" ]; then
+    PATH="${HOME}/git/diff-so-fancy:$PATH"
+fi
 
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
