@@ -78,10 +78,10 @@ if ${use_color} ; then
 
 	if [[ ${EUID} == 0 ]] ; then
         PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\[\033[01;36m\] \w\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\ ($(uname -r))[\033[01;36m\] \w\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	else
         PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h\[\033[01;37m\] \w\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))\[\033[01;37m\] \w\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -186,7 +186,8 @@ function promptGPU()
   if [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "einstein" ]; then
     GPUUTI="$(nvidia-smi --query-gpu="utilization.gpu" --format="csv,noheader" | awk '{print $1 "%"}')"
     GPUTMP="$(nvidia-smi --query-gpu="temperature.gpu" --format="csv,noheader")°C"
-    GPU="${GPUUTI}, ${GPUTMP}"
+    GPUDRIVER="$(nvidia-smi -q | grep "Driver Version" | awk '{print $4}')"
+    GPU="${GPUUTI}, ${GPUTMP} (${GPUDRIVER})"
   fi
 }
 
