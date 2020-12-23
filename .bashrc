@@ -159,7 +159,7 @@ function promptCPU()
   sleep 0.1
   read cpu a b c idle rest < /proc/stat
   total=$((a+b+c+idle))
-  CPUUTIL="$((100 * ((total-prevtotal) - (idle-previdle)) / (total-prevtotal)))%"
+  CPUUTIL="$((100 * ( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal)))%"
   CPUTEMP=""
   if [ "${HOSTNAME}" == "mykonos" ]; then
     CPUTEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
