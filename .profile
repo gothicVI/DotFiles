@@ -16,7 +16,4 @@ export CCACHE_COMPRESS=1
 if [ "${HOSTNAME}" == "einstein" ]; then
     export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
     export JAVA_TOOL_OPTIONS=-Xmx8G
-elif [ "${HOSTNAME}" == "kleineinstein" ]; then
-    export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
-    export JAVA_TOOL_OPTIONS=-Xmx4G
 fi
