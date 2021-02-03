@@ -216,6 +216,12 @@ export HISTSIZE=
 # Append a session's history on shell exit
 shopt -s histappend
 
-if [ -f "${HOME}/.profile" ] ; then
+# Ensure CTRL + SHIFT + T  opens a new terminal in the same path as the current one
+# Following https://unix.stackexchange.com/a/93477
+if [ -f "${HOME}/git/DotFiles/vte.sh" ]; then
+    source "${HOME}/git/DotFiles/vte.sh"
+fi
+
+if [ -f "${HOME}/.profile" ]; then
     source "${HOME}/.profile"
 fi
