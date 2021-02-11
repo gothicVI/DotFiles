@@ -13,19 +13,6 @@ if [ -f ~/git/Scripts/TLMGR.sh ]; then
   alias TLMGR='~/git/Scripts/TLMGR.sh'
 fi
 
-if [ -f ~/git/AndroidDevelopment/laos_build.sh ] && [ -d ~/android ]; then
-  for rev in 14.1 15.1 16.0 17.1; do
-    for dev in potter sargo thea; do
-      if [ -f ~/android/laos_${rev}/.repo/local_manifests/${dev}_${rev}.xml ]; then
-        alias "${dev}${rev}"="~/git/AndroidDevelopment/laos_build.sh ${dev} ${rev} $(($(nproc --all) - 2))"
-      fi
-    done
-    if [ -d ~/android/laos_${rev} ]; then
-      alias "androidclean${rev}"="rm -rfv ~/android/laos_${rev}/out/* ~/android/laos_${rev}/out/.*"
-    fi
-  done
-fi
-
 if [ -f ~/git/Scripts/mvv.sh ]; then
   alias mvv='~/mvv.sh'
 fi
