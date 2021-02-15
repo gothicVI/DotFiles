@@ -77,11 +77,21 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-        PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\ ($(uname -r))[\033[01;36m\] \w\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        if [ "${HOSTNAME}" == "max" ]; then
+          PROMPT_COMMAND=init
+          PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \h\ ($(uname -r))[\033[01;36m\] \w\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        elif [ "${HOSTNAME}" == "einstein" ] || [ "${HOSTNAME}" == "kleineinstein" ]; then
+          PROMPT_COMMAND=initlaptop
+          PS1='\[\033[01;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \h\ ($(uname -r))[\033[01;36m\] \w\[\033[01;31m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        fi
 	else
-        PROMPT_COMMAND=initlaptop
-        PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))\[\033[01;37m\] \w\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        if [ "${HOSTNAME}" == "max" ]; then
+          PROMPT_COMMAND=init
+          PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))\[\033[01;37m\] \w\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        elif [ "${HOSTNAME}" == "einstein" ] || [ "${HOSTNAME}" == "kleineinstein" ]; then
+          PROMPT_COMMAND=initlaptop
+          PS1='\[\033[01;32m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))\[\033[01;37m\] \w\[\033[01;32m\]$(__git_ps1 " (%s)")]\n\$\[\033[00m\] '
+        fi
 	fi
 
 	alias ls='ls --color=auto'
