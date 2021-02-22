@@ -107,3 +107,16 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+""""""""
+" Kite "
+""""""""
+
+let g:kite_tab_complete=1
+set completeopt+=menuone
+set completeopt+=noselect
+set completeopt+=noinsert
+set completeopt+=preview
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=2
