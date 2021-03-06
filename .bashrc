@@ -94,26 +94,34 @@ if ${use_color} ; then
         fi
 	fi
 
-	alias ls='ls --color=auto'
+	alias ls='ls --color=auto --group-directories-first'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 else
 	if [[ ${EUID} == 0 ]] ; then
-		# show root@ when we don't have colors
+        # show root@ when we don't have colors
         PS1='\u@\h \w \$ '
 	else
         PS1='\u@\h \w \$ '
 	fi
+
+      alias ls='ls --group-directories-first'
 fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp='/usr/bin/cp -i'                          # confirm before overwriting something
-alias df='/usr/bin/df -h'                          # human-readable sizes
-alias free='/usr/bin/free -m'                      # show sizes in MB
-alias np='/usr/bin/nano -w PKGBUILD'
-alias more='/usr/bin/less'
+alias cp='cp -iv'                         # confirm before overwriting something and copy verbose
+alias mv='mv -v'                          # move verbose
+alias rm='rm -v'                          # remove verbose
+alias mkdir='mkdir -v'                    # create directories verbose
+alias rmdir='rmdir -v'                    # delete directories verbose
+alias TOP='top -u $(whoami)'
+alias HTOP='htop -u $(whoami)'
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias more='less'
+[ -f ~/git/Scripts/TLMGR.sh ] && alias TLMGR='~/git/Scripts/TLMGR.sh'
 
 xhost +local:root > /dev/null 2>&1
 
@@ -138,7 +146,7 @@ shopt -s histappend
 ex ()
 {
   if [ -f "${1}" ] ; then
-    case $1 in
+    case "${1}" in
       *.tar.bz2)   tar xjf "${1}"   ;;
       *.tar.gz)    tar xzf "${1}"   ;;
       *.bz2)       bunzip2 "${1}"   ;;
@@ -150,7 +158,7 @@ ex ()
       *.zip)       unzip "${1}"     ;;
       *.Z)         uncompress "${1}";;
       *.7z)        7z x "${1}"      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *)           echo "${1} cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
