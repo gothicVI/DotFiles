@@ -71,11 +71,21 @@ function promptGPU()
   fi
 }
 
+function fetchgit()
+{
+# If we are in a git repository fetch in the background
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]; then
+    # () runs the command in a subshell to avoid the Done message due to the running in background
+    (git fetch &)
+fi
+}
+
 function init()
 {
   promptRAM
   promptCPU
   promptGPU
+  fetchgit
 }
 
 function initlaptop()
@@ -84,4 +94,5 @@ function initlaptop()
   promptCPU
   promptBAT
   promptGPU
+  fetchgit
 }
