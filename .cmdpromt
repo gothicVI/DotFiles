@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script the modifies the bash promt to display free RAM, BATTERY-PERCENTAGE (if ~./IsLaptop exists), and CPU utilization.
+# Script the modifies the bash prompt to display free RAM, BATTERY-PERCENTAGE (if ~./IsLaptop exists), and CPU utilization.
 # It also displays git information when git is installed and the current directory is part of a git repository.
 # It is called by ~/.profile
 
@@ -75,8 +75,11 @@ function fetchgit()
 {
 # If we are in a git repository fetch in the background
 if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]; then
+  # If there is no instance of git fetch running
+  if [ "$(pgrep -a git | grep 'git fetch')" == "" ]; then
     # () runs the command in a subshell to avoid the Done message due to the running in background
     (git fetch &)
+  fi
 fi
 }
 
