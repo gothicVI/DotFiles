@@ -17,6 +17,12 @@ syntax on
 " Set maximum tabs available via 'vim -p '
 set tabpagemax=999
 
+" Always open in tabs
+augroup open-tabs
+    au!
+    au VimEnter * ++nested if !&diff | tab all | tabfirst | endif
+augroup end
+
 " Sets number of lines of history VIM has to remember
 set history=500
 
