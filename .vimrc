@@ -23,6 +23,10 @@ augroup open-tabs
     au VimEnter * ++nested if !&diff | tab all | tabfirst | endif
 augroup end
 
+" Use CTRL + arrows to switch tabs
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
 " Sets number of lines of history VIM has to remember
 set history=500
 
