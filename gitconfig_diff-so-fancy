@@ -1,38 +1,17 @@
 # This version requires diff-so-fancy to be installed
 # See here: https://github.com/so-fancy/diff-so-fancy
-[user]
-      name =
-      email =
-      signingkey =
-[cola]
-      spellcheck = false
-[color]
-      ui = true
+[include]
+      path = ~/git/DotFiles/gitconfig
+[core]
+      pager = diff-so-fancy | less --tabs=4 -RFX
 [color "diff"]
-      whitespace = red reverse
       meta = 11
       frag = magenta bold
       commit = yellow bold
       old = red bold
       new = green bold
-[commit]
-      gpgsign = true
-      verbose = true
-[core]
-      editor = vim
-      pager = diff-so-fancy | less --tabs=4 -RFX
-[diff]
-      tool = kdiff3
-[difftool]
-      prompt = false
-[merge]
-      tool = kdiff3
-[pull]
-      rebase = false
 [color "diff-highlight"]
       oldNormal = red bold
       oldHighlight = red bold 52
       newNormal = green bold
       newHighlight = green bold 22
-[init]
-      defaultBranch = main
