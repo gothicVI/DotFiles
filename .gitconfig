@@ -1,0 +1,7 @@
+[user]
+	name = XXX
+	email = XXX
+	signingkey = XXX
+[include]
+      #path = ~/git/DotFiles/gitconfig
+      #path = ~/git/DotFiles/gitconfig_diff-so-fancy
