@@ -249,10 +249,6 @@ if [ -f "${HOME}/git/DotFiles/vte.sh" ]; then
     source "${HOME}/git/DotFiles/vte.sh"
 fi
 
-if [ -f "${HOME}/.profile" ]; then
-    source "${HOME}/.profile"
-fi
-
 # If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc so it won't get overriden
 if [ ! -a ~/.inputrc ]; then
     echo '$include /etc/inputrc' > ~/.inputrc
