@@ -1,7 +1,5 @@
 # This version requires diff-so-fancy to be installed
 # See here: https://github.com/so-fancy/diff-so-fancy
-[include]
-      path = ~/git/DotFiles/gitconfig
 [core]
       pager = diff-so-fancy | less --tabs=4 -RFX
 [color "diff"]
