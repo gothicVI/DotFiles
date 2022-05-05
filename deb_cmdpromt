@@ -43,14 +43,18 @@ function promptCPU()
   total=$((a+b+c+idle))
   CPUUTIL="$((100 * ( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal)))%"
   CPUTEMP=""
-  if [ "${HOSTNAME}" == "mykonos" ]; then
-    CPUTEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
-  elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || \
-       [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
-       [ "${HOSTNAME}" == "smaug" ]; then
-    CPUTEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
-  elif [ "${HOSTNAME}" == "max" ]; then
-    CPUTEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
+  if [ "${USER}" == "ga56gix" ]; then
+    if [ "${HOSTNAME}" == "mykonos" ]; then
+      CPUTEMP=", $(sensors | grep "CPU Temperature" | awk '{print $3}')"
+    elif [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || \
+         [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
+         [ "${HOSTNAME}" == "smaug" ]; then
+      CPUTEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
+    fi
+  elif [ "${USER}" == "di75faw" ]; then
+    if [ "${HOSTNAME}" == "badwlrz-cl01399" ]; then
+      CPUTEMP=", $(sensors | grep "Package id 0:" | awk '{print $4}')"
+    fi
   fi
   CPU="${CPUUTIL}${CPUTEMP}"
 }
@@ -63,11 +67,13 @@ function promptBAT()
 function promptGPU()
 {
   GPU="---"
-  if [ "${HOSTNAME}" == "max" ] && [ -x "$(command -v nvidia-smi)" ]; then
-    GPUUTI="$(nvidia-smi --query-gpu="utilization.gpu" --format="csv,noheader" | awk '{print $1 "%"}')"
-    GPUTMP="$(nvidia-smi --query-gpu="temperature.gpu" --format="csv,noheader")°C"
-    GPUDRIVER="$(nvidia-smi -q | grep "Driver Version" | awk '{print $4}')"
-    GPU="${GPUUTI}, ${GPUTMP} (${GPUDRIVER})"
+  if [ -x "$(command -v nvidia-smi)" ]; then
+    if [ "${HOSTNAME}" == "max" ]; then
+      GPUUTI="$(nvidia-smi --query-gpu="utilization.gpu" --format="csv,noheader" | awk '{print $1 "%"}')"
+      GPUTMP="$(nvidia-smi --query-gpu="temperature.gpu" --format="csv,noheader")°C"
+      GPUDRIVER="$(nvidia-smi -q | grep "Driver Version" | awk '{print $4}')"
+      GPU="${GPUUTI}, ${GPUTMP} (${GPUDRIVER})"
+    fi
   fi
 }
 
