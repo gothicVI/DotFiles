@@ -9,7 +9,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-test -z "$PROFILEREAD" && . /etc/profile || true
+# Ensure /etc/profile is sourced
+test -z "${PROFILEREAD}" && source /etc/profile || true
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -26,6 +27,26 @@ fi
 if [ -d "${HOME}/.local/bin" ]; then
     PATH="${HOME}/.local/bin:$PATH"
 fi
+
+# set diff-so-fancy path - this can not be done via a symlink
+# in ~/bin because a subfolder needs to exist relative to the
+# executable
 if [ -d "${HOME}/git/diff-so-fancy" ]; then
     PATH="${HOME}/git/diff-so-fancy:$PATH"
+fi
+
+# exports
+export EDITOR=/usr/bin/vim
+
+# Manjaro specific stuff
+if [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "einstein" ] || \
+   [ "${HOSTNAME}" == "kleineinstein" ]; then
+  export QT_QPA_PLATFORMTHEME="qt5ct"
+  export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+  if [ "${USER}" == "sebastian" ]; then
+    export USE_CCACHE=1
+    export CCACHE_COMPRESS=1
+    #export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
+    #export JAVA_TOOL_OPTIONS=-Xmx8G
+  fi
 fi
