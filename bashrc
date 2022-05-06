@@ -34,6 +34,10 @@ fi
 # source git completion and set options
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
   source /usr/share/git/completion/git-prompt.sh
+elif [ -f /usr/lib/git-core/git-sh-prompt ]; then
+  source /usr/lib/git-core/git-sh-prompt
+fi
+if [ -f /usr/share/git/completion/git-prompt.sh ] || [ -f /usr/lib/git-core/git-sh-prompt ]; then
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWSTASHSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
