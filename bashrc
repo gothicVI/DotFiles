@@ -107,7 +107,7 @@ if [ -x /usr/bin/dircolors ]; then
 		eval "$(dircolors -b /etc/DIR_COLORS)"
 	fi
   fi
-  alias ls='ls --color=auto'
+  alias ls='ls --color=auto  --group-directories-first'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
 
@@ -116,6 +116,8 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 
   export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+else
+  alias ls='ls  --group-directories-first'
 fi
 
 # bash prompt
@@ -259,7 +261,6 @@ function initlaptop() {
 ###########
 # ALIASES #
 ###########
-alias ls='ls --group-directories-first'  # directories before files
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
