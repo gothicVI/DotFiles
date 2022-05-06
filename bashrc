@@ -43,6 +43,9 @@ if [ -f /usr/share/git/completion/git-prompt.sh ] || [ -f /usr/lib/git-core/git-
   GIT_PS1_SHOWUNTRACKEDFILES=1
   GIT_PS1_SHOWUPSTREAM="auto"
   GIT_PS1_SHOWCOLORHINTS=1
+  GIT_COMPLETION="True"
+else
+  GIT_COMPLETION="False"
 fi
 
 xhost +local:root > /dev/null 2>&1
@@ -137,43 +140,52 @@ else
   ISLAPTOP=""
 fi
 
-if [[ ${EUID} == 0 ]] ; then
+if [ "${EUID}" == "0" ] ; then
   if [ "${ISLAPTOP}" == "False" ]; then
     PROMPT_COMMAND=init
-    if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    if [ "${GIT_COMPLETION}" == "True" ]; then
       PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
     else
       PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
     fi
   elif [ "${ISLAPTOP}" == "True" ]; then
     PROMPT_COMMAND=initlaptop
-    if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    if [ "${GIT_COMPLETION}" == "True" ]; then
       PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
     else
       PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
     fi
   else
     echo "SET THE DEVICE TYPE FOR THIS MACHINE IN ~/.bashrc"
-    PS1='\[\033[47;31m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
+    if [ "${GIT_COMPLETION}" == "True" ]; then
+      PS1='\[\033[47;31m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
+    else
+      PS1='\[\033[47;31m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
+
+    fi
   fi
 else
   if [ "${ISLAPTOP}" == "False" ]; then
     PROMPT_COMMAND=init
-    if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    if [ "${GIT_COMPLETION}" == "True" ]; then
       PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
     else
       PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
     fi
   elif [ "${ISLAPTOP}" == "True" ]; then
     PROMPT_COMMAND=initlaptop
-    if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    if [ "${GIT_COMPLETION}" == "True" ]; then
       PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
     else
       PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
     fi
   else
     echo "SET THE DEVICE TYPE FOR THIS MACHINE IN ~/.bashrc"
-    PS1='\[\033[47;30m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
+    if [ "${GIT_COMPLETION}" == "True" ]; then
+      PS1='\[\033[47;30m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
+    else
+      PS1='\[\033[47;30m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
+    fi
   fi
 fi
 unset ISLAPTOP
