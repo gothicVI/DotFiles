@@ -61,14 +61,6 @@ fi
 # Add shell-option to ~/.inputrc to enable case-insensitive tab completion
 echo 'set completion-ignore-case On' >> ~/.inputrc
 
-# Ensure CTRL + SHIFT + T  opens a new terminal in the same path as the current one
-# Following https://unix.stackexchange.com/a/93477
-if [ -f "/usr/lib/vte-urlencode-cwd" ]; then
-  if [ -f "${HOME}/git/DotFiles/vte.sh" ]; then
-    source "${HOME}/git/DotFiles/vte.sh"
-  fi
-fi
-
 ###########
 # HISTORY #
 ###########
@@ -260,6 +252,14 @@ function initlaptop() {
     fetchgit
   fi
 }
+
+# Ensure CTRL + SHIFT + T  opens a new terminal in the same path as the current one
+# Following https://unix.stackexchange.com/a/93477 this need to be after altering PROMPT_COMMAND
+if [ -f "/usr/lib/vte-urlencode-cwd" ]; then
+  if [ -f "${HOME}/git/DotFiles/vte.sh" ]; then
+    source "${HOME}/git/DotFiles/vte.sh"
+  fi
+fi
 
 ###########
 # ALIASES #
