@@ -219,7 +219,16 @@ function promptGPU() {
 }
 
 function promptBAT() {
-  BAT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
+  BAT_PERCENT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
+  BAT_TIME_EMPT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to empty:" | awk '{print "\xF0\x9F\x94\x8B" $4 " " $5}')"
+  BAT_TIME_FULL="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to full:" | awk '{print "\xF0\x9F\x94\x8C" $4 " " $5}')"
+  if [ "${BAT_TIME_EMPT}" != "" ]; then
+    BAT="${BAT_PERCENT} ${BAT_TIME_EMPT}"
+  elif [ "${BAT_TIME_FULL}" != "" ]; then
+    BAT="${BAT_PERCENT} ${BAT_TIME_FULL}"
+  else
+    BAT="${BAT_PERCENT}"
+  fi
 }
 
 function fetchgit() {
