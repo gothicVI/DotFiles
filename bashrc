@@ -137,12 +137,10 @@ if [ "${EUID}" == "0" ] ; then
       PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
     fi
   else
-    echo "SET THE DEVICE TYPE FOR THIS MACHINE IN ~/.bashrc"
     if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;31m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
+      PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
     else
-      PS1='\[\033[47;31m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
-
+      PS1='\[\033[47;31m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
     fi
   fi
 else
@@ -161,11 +159,10 @@ else
       PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | Battery: ${BAT} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
     fi
   else
-    echo "SET THE DEVICE TYPE FOR THIS MACHINE IN ~/.bashrc"
     if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;30m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
+      PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
     else
-      PS1='\[\033[47;30m\][\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
+      PS1='\[\033[47;30m\][RAM free: ${RAM} | CPU: ${CPU} | GPU: ${GPU} | \u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
     fi
   fi
 fi
