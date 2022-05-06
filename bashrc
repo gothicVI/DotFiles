@@ -83,25 +83,6 @@ shopt -s histappend
 export HISTSIZE=
 export HISTFILESIZE=
 
-#################
-# Fortune stuff #
-#################
-if [ -x "$(command -v mint-fortune)" ]; then
-  if [ -x "$(command -v cowsay)" ]; then
-    mint-fortune | cowsay
-  else
-    mint-fortune
-  fi
-fi
-
-if [ -x "$(command -v fortune)" ] ; then
-  if [ -x "$(command -v cowsay)" ]; then
-    fortune | cowsay
-  else
-    fortune
-  fi
-fi
-
 ##################
 # COLOR & PROMPT #
 ##################
