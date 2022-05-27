@@ -107,7 +107,7 @@ if [ "${HOSTNAME}" == "einstein" ] || [ "${HOSTNAME}" == "kleineinstein" ] || \
 elif [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "mykonos" ] || \
      [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || \
      [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
-     [ "${HOSTNAME}" == "smaug" ]; then
+     [ "${HOSTNAME}" == "smaug" ] || [ "${HOSTNAME}" == "ryzen01" ]; then
   ISLAPTOP="False"
 else
   ISLAPTOP=""
@@ -187,6 +187,8 @@ function promptCPU() {
          [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
          [ "${HOSTNAME}" == "smaug" ]; then
       CPUTEMP=", $(sensors | grep "CPU" | awk '{print $2}')"
+    elif [ "${HOSTNAME}" == "ryzen01" ]; then
+      CPUTEMP=", $(sensors | grep "Tctl" | awk '{print $2}')"
     fi
   elif [ "${USER}" == "di75faw" ]; then
     if [ "${HOSTNAME}" == "badwlrz-cl01399" ]; then
