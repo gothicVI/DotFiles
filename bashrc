@@ -54,7 +54,7 @@ complete -cf sudo
 
 shopt -s expand_aliases
 
-# If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc so it won't get overriden
+# If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc so it won't get overridden
 if [ ! -a ~/.inputrc ]; then
     echo '$include /etc/inputrc' > ~/.inputrc
 fi
@@ -272,7 +272,7 @@ alias l='ls -CF'
 
 alias cp='cp -iv'                        # confirm before overwriting something and copy verbose
 alias mv='mv -iv'                        # confirm before overwriting something and move verbose
-alias rm='rm -Iv'                        # confirm before removin more than three items and remove verbose
+alias rm='rm -Iv'                        # confirm before removing more than three items and remove verbose
 alias mkdir='mkdir -v'                   # create directories verbose
 alias rmdir='rmdir -v'                   # delete directories verbose
 alias TOP='top -u $(whoami)'             # only show user processes
