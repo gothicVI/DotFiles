@@ -1,0 +1,6 @@
+[pylint]
+disable = C0103,C0302,C0325,R0912,R0913,R0914,R0915
+max-line-length = 120
+ignore = .git __pycache__
+j = 0
+reports = yes
