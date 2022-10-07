@@ -1,5 +1,6 @@
 {
   "diffEditor.ignoreTrimWhitespace": false,
+  "editor.multiCursorModifier": "ctrlCmd",
   "kite.showWelcomeNotificationOnStartup": false,
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.variableTypes": true,
@@ -8,5 +9,6 @@
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
   "python.linting.pycodestyleEnabled": true,
+  "python.linting.pydocstyleEnabled": true,
   "python.linting.pylintEnabled": true
 }
