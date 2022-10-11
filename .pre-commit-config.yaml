@@ -64,7 +64,7 @@ repos:
             # D101 Missing docstring in public class
             # D102 Missing docstring in public method
             # D103 Missing docstring in public function",
-            "--ignore=D100,D101,D102,D103,",
+            "--ignore=D100,D101,D102,D103,D212,",
           ]
       - id: pylint
         name: pylint
