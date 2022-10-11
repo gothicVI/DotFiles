@@ -8,7 +8,6 @@
 #  git commit
 # To check all files in the repositoy run
 #  pre-commit run --all-files
-fail_fast: true
 exclude: \.nb$|\.m$
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -24,6 +23,49 @@ repos:
         exclude: \.dat$|\.in$
   - repo: local
     hooks:
+      - id: flake8
+        name: flake8
+        entry: flake8
+        language: system
+        types: [python]
+        args:
+          [
+            "--config=setup.cfg", # Link to your config file
+            "--ignore=E265,  # block comment should start with ‘# ‘
+                      E266,  # too many leading ‘#’ for block comment
+                      E501,  # line too long
+                      F401,  # Module imported but unused
+                      F403,  # 'from module import *' used
+                      W503,  # line break before binary operator",
+          ]
+      - id: pycodestyle
+        name: pycodestyle
+        entry: pycodestyle
+        language: system
+        types: [python]
+        args:
+          [
+            "--config=setup.cfg", # Link to your config file
+            # E265 block comment should start with ‘# ‘
+            # E266 too many leading ‘#’ for block comment
+            # E501 line too long
+            # W503 line break before binary operator",
+            "--ignore=E265,E266,E501,W503,",
+          ]
+      - id: pydocstyle
+        name: pydocstyle
+        entry: pydocstyle
+        language: system
+        types: [python]
+        args:
+          [
+            "--config=setup.cfg", # Link to your config file
+            # D100 Missing docstring in public module
+            # D101 Missing docstring in public class
+            # D102 Missing docstring in public method
+            # D103 Missing docstring in public function",
+            "--ignore=D100,D101,D102,D103,",
+          ]
       - id: pylint
         name: pylint
         entry: pylint
@@ -35,14 +77,4 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=pylintrc", # Link to your config file
             "--disable=line-too-long,wildcard-import,unused-wildcard-import,missing-module-docstring,missing-function-docstring",
-          ]
-      - id: flake8
-        name: flake8
-        entry: flake8
-        language: system
-        types: [python]
-        args:
-          [
-            "--config=setup.cfg", # Link to your config file
-            "--ignore=E265,E266,E501,F401,F403,W503",
           ]
