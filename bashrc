@@ -185,17 +185,17 @@ function promptBAT_MOUSE() {
   if [ "$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "model" | awk '{for(i=2;i<=NF;++i)printf $i ; print ""}')" == "G403ProdigyWired/WirelessGamingMouse" ]; then
     BAT_MOUSE_STATE="$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "state:" | awk '{print $2}')"
     if [ "${BAT_MOUSE_STATE}" != "unknown" ]; then
-      BAT_PERCENT="$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "percentage:" | awk '{print $2}')"
-      BAT_CHARGING=""
-      BAT_DISCHARGING=""
+      BAT_MOUSE_PERCENT="$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "percentage:" | awk '{print $2}')"
+      BAT_MOUSE_CHARGING=""
+      BAT_MOUSE_DISCHARGING=""
       if [ "${BAT_MOUSE_STATE}" == "charging" ]; then
-        BAT_CHARGING="$(echo -e "\xF0\x9F\x94\x8C")"
+        BAT_MOUSE_CHARGING="$(echo -e "\xF0\x9F\x94\x8C")"
       elif [ "${BAT_MOUSE_STATE}" == "discharging" ]; then
-        BAT_DISCHARGING="$(echo -e "\xF0\x9F\x94\x8B")"
+        BAT_MOUSE_DISCHARGING="$(echo -e "\xF0\x9F\x94\x8B")"
       else
         echo "BAT_MOUSE_STATE is ${BAT_MOUSE_STATE} in ~/.bashrc"
       fi
-      BAT_MOUSE="BAT MOUSE: ${BAT_PERCENT} ${BAT_CHARGING}${BAT_DISCHARGING}| "
+      BAT_MOUSE="BAT MOUSE: ${BAT_MOUSE_PERCENT} ${BAT_MOUSE_CHARGING}${BAT_MOUSE_DISCHARGING}| "
     fi
   fi
 }
