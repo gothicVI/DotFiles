@@ -101,64 +101,17 @@ else
 fi
 
 # bash prompt
-if [ "${HOSTNAME}" == "einstein" ] || [ "${HOSTNAME}" == "kleineinstein" ] || \
-   [ "${HOSTNAME}" == "badwlrz-cl01399" ]; then
-  ISLAPTOP="True"
-elif [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "mykonos" ] || \
-     [ "${HOSTNAME}" == "dell01" ] || [ "${HOSTNAME}" == "dell02" ] || \
-     [ "${HOSTNAME}" == "dell03" ] || [ "${HOSTNAME}" == "dell04" ] || \
-     [ "${HOSTNAME}" == "smaug" ] || [ "${HOSTNAME}" == "ryzen01" ]; then
-  ISLAPTOP="False"
-else
-  ISLAPTOP=""
-fi
-
 if [ "${EUID}" == "0" ] ; then
-  if [ "${ISLAPTOP}" == "False" ]; then
-    PROMPT_COMMAND=init
-    if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;31m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
-    else
-      PS1='\[\033[47;31m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
-    fi
-  elif [ "${ISLAPTOP}" == "True" ]; then
-    PROMPT_COMMAND=initlaptop
-    if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;31m\][${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
-    else
-      PS1='\[\033[47;31m\][RA${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
-    fi
-  else
-    if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;31m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
-    else
-      PS1='\[\033[47;31m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
-    fi
-  fi
+  PROMPT_COMMAND=init
+  PS1='\[\033[47;31m\][${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;31m\]]\[\033[00m\]\n\$ '
 else
-  if [ "${ISLAPTOP}" == "False" ]; then
-    PROMPT_COMMAND=init
-    if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
-    else
-      PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
-    fi
-  elif [ "${ISLAPTOP}" == "True" ]; then
-    PROMPT_COMMAND=initlaptop
-    if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
-    else
-      PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
-    fi
+  PROMPT_COMMAND=init
+  if [ "${GIT_COMPLETION}" == "True" ]; then
+    PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
   else
-    if [ "${GIT_COMPLETION}" == "True" ]; then
-      PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]$(__git_ps1 " (%s)")]\[\033[00m\]\n\$ '
-    else
-      PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
-    fi
+    PS1='\[\033[47;30m\][${RAM}${CPU}${GPU}${BAT}${BAT_MOUSE}\u@\h ($(uname -r))][\033[47;32m\]\w\[\033[47;30m\]]\[\033[00m\]\n\$ '
   fi
 fi
-unset ISLAPTOP
 
 function promptRAM() {
   RAM="RAM free: $(free -h | awk 'NR==2 {print $4 "/" $2}') | "
@@ -213,15 +166,17 @@ function promptGPU() {
 }
 
 function promptBAT() {
-  BAT_PERCENT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
-  BAT_TIME_EMPT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to empty:" | awk '{print "\xF0\x9F\x94\x8B" $4 " " $5}')"
-  BAT_TIME_FULL="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to full:" | awk '{print "\xF0\x9F\x94\x8C" $4 " " $5}')"
-  if [ "${BAT_TIME_EMPT}" != "" ]; then
-    BAT="Battery: ${BAT_PERCENT} ${BAT_TIME_EMPT} | "
-  elif [ "${BAT_TIME_FULL}" != "" ]; then
-    BAT="Battery: ${BAT_PERCENT} ${BAT_TIME_FULL} | "
-  else
-    BAT="Battery: ${BAT_PERCENT} | "
+  BAT=""
+  if [ "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "native-path:" | awk '{print $2}')" != "(null)" ]; then
+    BAT_PERCENT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | awk '{print $2}')"
+    BAT_STATE="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "state:" | awk '{print $2}')"
+    BAT_TIME_EMPT=""
+    BAT_TIME_FULL=""
+    if [ "${BAT_STATE}" != "fully-charged" ]; then
+      BAT_TIME_EMPT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to empty:" | awk '{print "\xF0\x9F\x94\x8B" $4 " " $5}')"
+      BAT_TIME_FULL="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to full:" | awk '{print "\xF0\x9F\x94\x8C" $4 " " $5}')"
+    fi
+    BAT="Battery: ${BAT_PERCENT} ${BAT_TIME_EMPT}${BAT_TIME_FULL} | "
   fi
 }
 
@@ -257,16 +212,6 @@ function fetchgit() {
 }
 
 function init() {
-  promptRAM
-  promptCPU
-  promptGPU
-  promptBAT_MOUSE
-  if [ ${EUID} != 0 ]; then
-    fetchgit
-  fi
-}
-
-function initlaptop() {
   promptRAM
   promptCPU
   promptGPU
