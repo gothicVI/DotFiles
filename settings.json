@@ -1,7 +1,6 @@
 {
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.multiCursorModifier": "ctrlCmd",
-  "kite.showWelcomeNotificationOnStartup": false,
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.typeCheckingMode": "basic",
@@ -10,5 +9,43 @@
   "python.linting.mypyEnabled": true,
   "python.linting.pycodestyleEnabled": true,
   "python.linting.pydocstyleEnabled": true,
-  "python.linting.pylintEnabled": true
+  "python.linting.pylintEnabled": true,
+  "fortran-ls.autocompletePrefix": true,
+  "fortran-ls.hoverSignature": true,
+  "fortran-ls.lowercaseIntrinsics": true,
+  "fortran-ls.variableHover": true,
+  "fortran-ls.notifyInit": true,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-c>": false,
+    "<C-f>": false,
+    "<C-x>": false
+  }
 }
