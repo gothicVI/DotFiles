@@ -26,4 +26,8 @@ codium --install-extension ms-vscode.cpptools
 codium --install-extension timonwong.shellcheck
 codium --install-extension vscodevim.vim
 ```
-Run each line to install the respective extension.
+Run each line to install the respective extension.<br>
+For the fortran extensions install
+```bash
+pip3 install --user --upgrade fortls fortran-language-server
+```
