@@ -9,21 +9,21 @@ and from `~/.config/VSCodium/User/`, respectively.
 
 Extensions:
 ```bash
-$ codium --list-extensions | xargs -L 1 echo code --install-extension
-code --install-extension fortran-lang.linter-gfortran
-code --install-extension Gimly81.fortran
-code --install-extension hansec.fortran-ls
-code --install-extension jeanp413.open-remote-ssh
-code --install-extension ms-python.isort
-code --install-extension ms-python.python
-code --install-extension ms-python.vscode-pylance
-code --install-extension ms-toolsai.jupyter
-code --install-extension ms-toolsai.jupyter-keymap
-code --install-extension ms-toolsai.jupyter-renderers
-code --install-extension ms-toolsai.vscode-jupyter-cell-tags
-code --install-extension ms-toolsai.vscode-jupyter-slideshow
-code --install-extension ms-vscode.cpptools
-code --install-extension timonwong.shellcheck
-code --install-extension vscodevim.vim
+$ codium --list-extensions | xargs -L 1 echo codium --install-extension
+codium --install-extension fortran-lang.linter-gfortran
+codium --install-extension Gimly81.fortran
+codium --install-extension hansec.fortran-ls
+codium --install-extension jeanp413.open-remote-ssh
+codium --install-extension ms-python.isort
+codium --install-extension ms-python.python
+codium --install-extension ms-python.vscode-pylance
+codium --install-extension ms-toolsai.jupyter
+codium --install-extension ms-toolsai.jupyter-keymap
+codium --install-extension ms-toolsai.jupyter-renderers
+codium --install-extension ms-toolsai.vscode-jupyter-cell-tags
+codium --install-extension ms-toolsai.vscode-jupyter-slideshow
+codium --install-extension ms-vscode.cpptools
+codium --install-extension timonwong.shellcheck
+codium --install-extension vscodevim.vim
 ```
 Run each line to install the respective extension.
