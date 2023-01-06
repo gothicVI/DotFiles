@@ -37,6 +37,10 @@ fi
 
 # exports
 export EDITOR=/usr/bin/vim
+# fix warpinator having issues with protobuff>3.20.x
+if [ -x "$(command -v warpinator)" ]; then
+  export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+fi
 
 # Manjaro specific stuff
 if [ "${HOSTNAME}" == "max" ] || [ "${HOSTNAME}" == "einstein" ] || \
