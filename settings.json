@@ -6,10 +6,25 @@
   "python.analysis.typeCheckingMode": "basic",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+    "--ignore=W503,",
+    "--max-line-length=120"
+  ],
   "python.linting.mypyEnabled": true,
   "python.linting.pycodestyleEnabled": true,
+  "python.linting.pycodestyleArgs": [
+    "--ignore=W503,",
+    "--max-line-length=120"
+  ],
   "python.linting.pydocstyleEnabled": true,
+  "python.linting.pydocstyleArgs": [
+    "--ignore=D100,D212,"
+  ],
   "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": [
+    "--disable=C0302,C0325,R0912,R0913,R0914,R0915,",
+    "--max-line-length=120"
+  ],
   "fortran-ls.autocompletePrefix": true,
   "fortran-ls.hoverSignature": true,
   "fortran-ls.lowercaseIntrinsics": true,
