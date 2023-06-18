@@ -182,7 +182,7 @@ function promptBAT() {
 
 function promptBAT_MOUSE() {
   BAT_MOUSE=""
-  if [ "$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "model" | awk '{for(i=2;i<=NF;++i)printf $i ; print ""}')" == "G403ProdigyWired/WirelessGamingMouse" ]; then
+  if [ "$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "model" | awk '{for(i=2;i<=NF;++i)printf $i ; print ""}')" == "G403ProdigyWirG403ProdigyWired/Wirel" ]; then
     BAT_MOUSE_STATE="$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "state:" | awk '{print $2}')"
     if [ "${BAT_MOUSE_STATE}" != "unknown" ]; then
       BAT_MOUSE_PERCENT="$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 | grep "percentage:" | awk '{print $2}')"
