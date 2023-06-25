@@ -172,7 +172,7 @@ function promptBAT() {
     BAT_STATE="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "state:" | awk '{print $2}')"
     BAT_TIME_EMPT=""
     BAT_TIME_FULL=""
-    if [ "${BAT_STATE}" != "fully-charged" ]; then
+    if [ "${BAT_STATE}" != "fully-charged" ] && [ "${BAT_STATE}" != "pending-charge" ]; then
       BAT_TIME_EMPT="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to empty:" | awk '{print "\xF0\x9F\x94\x8B" $4 " " $5}')"
       BAT_TIME_FULL="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to full:" | awk '{print "\xF0\x9F\x94\x8C" $4 " " $5}')"
     fi
