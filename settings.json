@@ -62,5 +62,6 @@
     "<C-c>": false,
     "<C-f>": false,
     "<C-x>": false
-  }
+  },
+  "autoDocstring.docstringFormat": "numpy",
 }

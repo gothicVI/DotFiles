@@ -23,6 +23,8 @@ codium --install-extension ms-toolsai.jupyter-renderers
 codium --install-extension ms-toolsai.vscode-jupyter-cell-tags
 codium --install-extension ms-toolsai.vscode-jupyter-slideshow
 codium --install-extension ms-vscode.cpptools
+codium --install-extension njpwerner.autodocstring
+codium --install-extension tht13.python
 codium --install-extension timonwong.shellcheck
 codium --install-extension vscodevim.vim
 ```
