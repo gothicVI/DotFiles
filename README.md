@@ -34,3 +34,4 @@ For the fortran extensions install
 ```bash
 pip3 install --user --upgrade fortls fortran-language-server
 ```
+Using `VSCodium` instead of `VSCode`, `pylance` needs to be limited to version `2023.6.40`.
