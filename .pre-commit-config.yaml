@@ -24,10 +24,27 @@ repos:
   - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.9.0
     hooks:
-    -   id: shellcheck
+      - id: shellcheck
 #       args: ["--severity=warning"]  # Optionally only show errors and warnings
+# - repo: https://github.com/thclark/pre-commit-sphinx
+#   rev: 0.0.3
+#   hooks:
+#     - id: build-docs
+#       args: ['--cache-dir', 'docs/doctrees', '--html-dir', 'docs/_build/html', '--source-dir', 'docs/']
+#       language_version: python3
+#       additional_dependencies: [sphinx, sphinx-autoapi]
   - repo: local
     hooks:
+      - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [python]
+        args:
+          [
+            "--settings=setup.cfg", # Link to your config file
+            "-l 120",
+          ]
       - id: flake8
         name: flake8
         entry: flake8
@@ -36,12 +53,12 @@ repos:
         args:
           [
             "--config=setup.cfg", # Link to your config file
-            "--ignore=E265,  # block comment should start with ‘# ‘
-                      E266,  # too many leading ‘#’ for block comment
-                      E501,  # line too long
-                      F401,  # Module imported but unused
-                      F403,  # 'from module import *' used
-                      W503,  # line break before binary operator",
+            # E265 block comment should start with '# '
+            # E266 too many leading '#' for block comment
+            # W503 line break before binary operator
+            "--ignore=E265,E266,W503,",
+            "--max-line-length=120",
+            "--exclude=.git,__pycache__",
           ]
       - id: pycodestyle
         name: pycodestyle
@@ -53,9 +70,10 @@ repos:
             "--config=setup.cfg", # Link to your config file
             # E265 block comment should start with ‘# ‘
             # E266 too many leading ‘#’ for block comment
-            # E501 line too long
             # W503 line break before binary operator",
-            "--ignore=E265,E266,E501,W503,",
+            "--ignore=E265,E266,W503,",
+            "--max-line-length=120",
+            "--exclude=.git,__pycache__",
           ]
       - id: pydocstyle
         name: pydocstyle
@@ -65,11 +83,7 @@ repos:
         args:
           [
             "--config=setup.cfg", # Link to your config file
-            # D100 Missing docstring in public module
-            # D101 Missing docstring in public class
-            # D102 Missing docstring in public method
-            # D103 Missing docstring in public function",
-            "--ignore=D100,D101,D102,D103,D212,",
+            "--convention=numpy",
           ]
       - id: pylint
         name: pylint
@@ -81,5 +95,27 @@ repos:
             "-rn", # Only display messages
             "-sn", # Don't display the score
             "--rcfile=pylintrc", # Link to your config file
-            "--disable=line-too-long,wildcard-import,unused-wildcard-import,missing-module-docstring,missing-function-docstring",
+            # C0302 too many lines
+            # C0325 superfluous-parens
+            # R0801 duplicate-code
+            # R0912 too-many-branches
+            # R0913 too-many-arguments
+            # R0914 too-many-locals
+            # R0915 too-many-statements
+            # W0511 fixme
+            "--disable=C0302,C0325,R0801,R0912,R0913,R0914,R0915,W0511,",
+            "--max-line-length=120",
+            "--ignore=.git,__pycache__",
+          ]
+      - id: mypy
+        name: mypy
+        pass_filenames: false  # suppress the normal filename passing
+        entry: mypy .
+        verbose: true
+        language: system
+        types: [python]
+        args:
+          [
+            "--config-file=setup.cfg", # Link to your config file
+            "--exclude=(.git|__pycache__)",
           ]

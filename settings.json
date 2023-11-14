@@ -1,67 +1,68 @@
 {
-  "diffEditor.ignoreTrimWhitespace": false,
-  "editor.multiCursorModifier": "ctrlCmd",
-  "python.analysis.inlayHints.functionReturnTypes": true,
-  "python.analysis.inlayHints.variableTypes": true,
-  "python.analysis.typeCheckingMode": "basic",
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": [
-    "--ignore=W503,",
-    "--max-line-length=120"
-  ],
-  "python.linting.mypyEnabled": true,
-  "python.linting.pycodestyleEnabled": true,
-  "python.linting.pycodestyleArgs": [
-    "--ignore=W503,",
-    "--max-line-length=120"
-  ],
-  "python.linting.pydocstyleEnabled": true,
-  "python.linting.pydocstyleArgs": [
-    "--ignore=D100,D212,"
-  ],
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": [
-    "--disable=C0302,C0325,R0912,R0913,R0914,R0915,",
-    "--max-line-length=120"
-  ],
-  "fortran-ls.autocompletePrefix": true,
-  "fortran-ls.hoverSignature": true,
-  "fortran-ls.lowercaseIntrinsics": true,
-  "fortran-ls.variableHover": true,
-  "fortran-ls.notifyInit": true,
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "isort.check": true,
+    "isort.args": [
+        "--settings-file=setup.cfg",
+        "-l 120"
+    ],
+    "flake8.args": [
+        "--config=setup.cfg",
+        "--ignore=W503,",
+        "--max-line-length=120",
+        "--exclude=.git,__pycache__"
+    ],
+    "autoDocstring.docstringFormat": "numpy",
+    "pylint.args": [
+        "--rcfile=pylintrc",
+        "--disable=C0302,C0325,R0801,R0912,R0913,R0914,R0915,",
+        "--max-line-length=120",
+        "--ignore=.git,__pycache__"
+    ],
+    "mypy-type-checker.reportingScope": "workspace",
+    "mypy-type-checker.args": [
+        "--config-file=setup.cfg",
+        "--exclude=(.git|__pycache__)"
+    ],
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "fortran-ls.autocompletePrefix": true,
+    "fortran-ls.hoverSignature": true,
+    "fortran-ls.lowercaseIntrinsics": true,
+    "fortran-ls.variableHover": true,
+    "fortran-ls.notifyInit": true,
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "d"],
+            "after": ["d", "d"]
+        },
+        {
+            "before": ["<C-n>"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["lineBreakInsert"],
+            "silent": true
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-c>": false,
+        "<C-f>": false,
+        "<C-x>": false
     }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<leader>", "d"],
-      "after": ["d", "d"]
-    },
-    {
-      "before": ["<C-n>"],
-      "commands": [":nohl"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["lineBreakInsert"],
-      "silent": true
-    }
-  ],
-  "vim.leader": "<space>",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-c>": false,
-    "<C-f>": false,
-    "<C-x>": false
-  },
-  "autoDocstring.docstringFormat": "numpy",
 }
