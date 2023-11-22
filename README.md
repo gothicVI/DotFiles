@@ -16,6 +16,7 @@ codium --install-extension Gimly81.fortran
 codium --install-extension hansec.fortran-ls
 codium --install-extension jeanp413.open-remote-ssh
 codium --install-extension ms-azuretools.vscode-docker
+codium --install-extension ms-python.black-formatter
 codium --install-extension ms-python.flake8
 codium --install-extension ms-python.isort
 codium --install-extension ms-python.mypy-type-checker

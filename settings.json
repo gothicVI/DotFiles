@@ -4,7 +4,10 @@
     "isort.check": true,
     "isort.args": [
         "--settings-file=setup.cfg",
-        "-l 120"
+        "--line-length=120",
+        "--profile=black",
+        "--force-grid-wrap=0",
+        "--multi-line 3"
     ],
     "flake8.args": [
         "--config=setup.cfg",
