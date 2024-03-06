@@ -28,11 +28,12 @@ if [ -d "${HOME}/.local/bin" ]; then
     PATH="${HOME}/.local/bin:$PATH"
 fi
 
-# Together with >>AddKeysToAgent yes<< in ~/.ssh/config this only asks once for ssh passphrases
-if [ -z "$SSH_AUTH_SOCK" ]; then
-  eval $(ssh-agent -s)
-#  ssh-add
-fi
+# # Together with >>AddKeysToAgent yes<< in ~/.ssh/config this only asks once for ssh passphrases
+# if [ -z "$SSH_AUTH_SOCK" ]; then
+#   eval $(ssh-agent -s)
+# #  ssh-add
+# fi
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 
 # set diff-so-fancy path - this can not be done via a symlink
 # in ~/bin because a subfolder needs to exist relative to the
