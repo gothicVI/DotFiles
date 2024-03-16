@@ -13,6 +13,10 @@
       tool = kdiff3
 [difftool]
       prompt = false
+[maintenance]
+      auto = false
+      strategy = incremental
+      repo = ~/git/*
 [merge]
       tool = kdiff3
 [pull]
