@@ -93,7 +93,7 @@ repos:
 #   rev: v3.19.1
 #   hooks:
 #   - id: pyupgrade
-#     args: ["--py313-plus"]
+#     args: ["--py311-plus"]
 # - repo: https://github.com/psf/black-pre-commit-mirror
 #   rev: 25.1.0
 #   hooks:
@@ -102,7 +102,7 @@ repos:
 #     # supported by your project here, or alternatively use
 #     # pre-commit's default_language_version, see
 #     # https://pre-commit.com/#top_level-default_language_version
-#     language_version: python3.13
+#     language_version: python3.11
 - repo: local
   hooks:
   # - id: isort

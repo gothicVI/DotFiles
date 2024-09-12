@@ -10,7 +10,7 @@ skips = ["B404", "B603"]  # https://github.com/PyCQA/bandit/issues/333
 
 [tool.black]
 line-length = 120
-target-version = ['py313']
+target-version = ['py311']
 
 [tool.pylint]
 disable = [
@@ -44,7 +44,7 @@ convention = "numpy"
 
 [tool.ruff]
 line-length = 120
-target-version = "py313"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = ["ALL"]
