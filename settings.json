@@ -67,5 +67,6 @@
         "<C-c>": false,
         "<C-f>": false,
         "<C-x>": false
-    }
+    },
+    "remote.SSH.configFile": "/home/di75faw/.ssh/vscodium_config"
 }
