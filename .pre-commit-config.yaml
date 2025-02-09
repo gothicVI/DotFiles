@@ -51,7 +51,7 @@ repos:
     rev: v3.15.0
     hooks:
       - id: pyupgrade
-        args: ["--py311-plus"]
+        args: ["--py313-plus"]
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.11.0
     hooks:
@@ -60,7 +60,7 @@ repos:
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
-        language_version: python3.12
+        language_version: python3.13
   - repo: local
     hooks:
       - id: isort
@@ -70,7 +70,7 @@ repos:
         types: [python]
         args:
           [
-            "--settings=setup.cfg", # Link to your config file
+            "--settings=pyproject.toml", # Link to your config file
             "--line-length=120",
             "--profile=black",
             "--force-grid-wrap=2",
@@ -115,7 +115,7 @@ repos:
         types: [python]
         args:
           [
-            "--config=setup.cfg", # Link to your config file
+            "--config=pyproject.toml", # Link to your config file
             "--convention=numpy",
           ]
       - id: pylint
@@ -149,6 +149,15 @@ repos:
         types: [python]
         args:
           [
-            "--config-file=setup.cfg", # Link to your config file
+            "--config-file=pyproject.toml", # Link to your config file
             "--exclude=(.git|__pycache__)",
           ]
+      - id: pyright
+        name: pyright
+        entry: pyright .
+        language: system
+        types: [python]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.5
+    hooks:
+    - id: ruff
