@@ -206,7 +206,7 @@ function fetchgit() {
     # If there is no instance of git fetch running
     if [ "$(pgrep -a git | grep 'git fetch')" == "" ]; then
       # () runs the command in a subshell to avoid the Done message due to the running in background
-      (git fetch &)
+      (git fetch --all 1>/dev/null 2>/dev/null &)
     fi
   fi
 }
