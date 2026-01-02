@@ -1,3 +1,13 @@
+[project]
+name = "dotfiles"
+version = "0.1.0"
+description = "dotfiles"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pre-commit>=4.5.1",
+]
+
 [tool.autopep8]
 max_line_length = 120
 in-place = true
@@ -59,4 +69,9 @@ ignore = [
   "S108", "S501", "S507",
   "TD002", "TD003", "TD004",
   "TRY003",
+]
+
+[dependency-groups]
+dev = [
+    "sphinx-lint>=1.0.2",
 ]
