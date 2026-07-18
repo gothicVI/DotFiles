@@ -35,13 +35,6 @@ fi
 # fi
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 
-# set diff-so-fancy path - this can not be done via a symlink
-# in ~/bin because a subfolder needs to exist relative to the
-# executable
-if [ -d "${HOME}/git/diff-so-fancy" ]; then
-    PATH="${HOME}/git/diff-so-fancy:$PATH"
-fi
-
 # exports
 export EDITOR=/usr/bin/vim
 # fix warpinator having issues with protobuff>3.20.x
