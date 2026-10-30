@@ -3,5 +3,13 @@
   "extends": [
     "config:recommended"
   ],
-  "assignees": ["gothicVI"]
+  "assignees": ["gothicVI"],
+  "pre-commit": {
+    "enabled": true
+  },
+  "managerFilePatterns": [
+    "/(^|/)pyproject\\.toml$/"
+  ],
+  "lockFileMaintenance": { "enabled": true },
+  "minimumReleaseAge": "3 days"
 }
